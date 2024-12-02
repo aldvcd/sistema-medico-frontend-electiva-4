@@ -11,6 +11,7 @@ import { ConsultaPacientesComponent } from 'src/components/consulta-pacientes/co
 import { ConsultaMedicosComponent } from 'src/components/consulta-medicos/consulta-medicos.component';
 import { ConsultaFichasMedicasComponent } from 'src/components/consulta-fichas-medicas/consulta-fichas-medicas.component';
 import { DetalleFichaComponent } from 'src/components/detalle-ficha/detalle-ficha.component';
+import { AltaFichaComponent } from 'src/components/alta-ficha/alta-ficha.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DetalleFichaComponent } from 'src/components/detalle-ficha/detalle-fich
     ConsultaPacientesComponent,
     ConsultaMedicosComponent,
     ConsultaFichasMedicasComponent,
-    DetalleFichaComponent
+    DetalleFichaComponent,
+    AltaFichaComponent
   ],
   imports: [
     BrowserModule,
