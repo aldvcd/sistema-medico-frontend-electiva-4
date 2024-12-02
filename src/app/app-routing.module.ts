@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AltaFichaComponent } from 'src/components/alta-ficha/alta-ficha.component';
 import { ConsultaFichasMedicasComponent } from 'src/components/consulta-fichas-medicas/consulta-fichas-medicas.component';
 import { ConsultaMedicosComponent } from 'src/components/consulta-medicos/consulta-medicos.component';
 import { ConsultaPacientesComponent } from 'src/components/consulta-pacientes/consulta-pacientes.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'consulta-pacientes',component:ConsultaPacientesComponent},
   {path:'consulta-medico',component:ConsultaMedicosComponent},
   {path:'consulta-ficha',component:ConsultaFichasMedicasComponent},
-  {path: 'ficha-detalle/:id', component: DetalleFichaComponent }
+  {path: 'ficha-detalle/:id', component: DetalleFichaComponent },
+  {path: 'crear-ficha', component: AltaFichaComponent}
 ];
 
 @NgModule({

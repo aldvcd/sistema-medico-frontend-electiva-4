@@ -1,0 +1,21 @@
+.card-header{
+    height: 4rem;
+}
+
+*{
+    font-family: 'Roboto Condensed'
+}
+
+.btn:active{
+    border-color:transparent
+}
+
+h2{
+    color: #CD59A4;
+    font-weight: bold;
+}
+
+h4{
+    color: #282828;
+    font-weight: bolder;
+}

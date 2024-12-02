@@ -1,0 +1,18 @@
+
+<div class="container" style="border-radius: 5rem; border-color: cadetblue; margin: auto;">
+    <h3>Bienvenido {{this.usuarioMedico}}</h3>
+    <hr>
+    <div class="row">
+        <div class="col-3" *ngFor="let opcion of opciones" style="margin-right: 1rem;">
+            <button class="btn custom-card" (click)="navigate(opcion.id)">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header" style="background-color: #0095DC;">
+                    </div>
+                    <div class="card-body">
+                    <h4 class="card-title">{{opcion.nombre}}</h4>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>

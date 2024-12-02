@@ -1,0 +1,102 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col" style="text-align: start;">
+            <h2>Consulta de Fichas Médicas</h2>
+        </div>
+            <div class="col" style="text-align: end;">
+                <button class="btn btn-outline-primary" (click)="createNewFicha()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
+                        <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5z"/>
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
+                    </svg>
+                </button>
+                <button class="btn btn-outline-secondary"   (click)="navigateToBack()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                    </svg>
+                </button>
+            </div>
+    </div>
+    
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Filtros de Búsqueda</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="texto" class="form-label">Texto</label>
+                    <input type="text" id="texto" class="form-control" [(ngModel)]="filtros.texto" />
+                </div>
+                <div class="col-md-4">
+                    <label for="especialidad" class="form-label">Especialidad</label>
+                    <input type="text" id="especialidad" class="form-control" [(ngModel)]="filtros.especialidad" />
+                </div>
+                <div class="col-md-4">
+                    <label for="medicoId" class="form-label">Médico</label>
+                    <select id="medicoId" class="form-select" [(ngModel)]="filtros.medicoId">
+                        <option [value]="null" disabled selected>Seleccione un médico</option>
+                        <option *ngFor="let medico of medicos" [value]="medico.id">
+                            {{ medico.nombre }} {{ medico.apellido }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="pacienteId" class="form-label">Paciente</label>
+                    <select id="pacienteId" class="form-select" [(ngModel)]="filtros.pacienteId">
+                        <option [value]="null" disabled selected>Seleccione un paciente</option>
+                        <option *ngFor="let paciente of pacientes" [value]="paciente.id">
+                            {{ paciente.nombre }} {{ paciente.apellido }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+                    <input type="date" id="fechaInicio" class="form-control" [(ngModel)]="filtros.fechaInicio" />
+                </div>
+                <div class="col-md-4">
+                    <label for="fechaFin" class="form-label">Fecha Fin</label>
+                    <input type="date" id="fechaFin" class="form-control" [(ngModel)]="filtros.fechaFin" />
+                </div>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-primary me-2" (click)="obtenerFichas()">
+                    Aplicar Filtros
+                </button>
+                <button class="btn btn-secondary" (click)="limpiarFiltros()">
+                    Limpiar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla de resultados -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Motivo Consulta</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ficha of fichas">
+                <td>{{ ficha.id }}</td>
+                <td>{{ ficha.paciente.nombre }} {{ ficha.paciente.apellido }}</td>
+                <td>{{ ficha.medico.nombre }} {{ ficha.medico.apellido }}</td>
+                <td>{{ ficha.motivoConsulta }}</td>
+                <td>{{ ficha.fecha | date: 'short' }}</td>
+                <td>
+                    <button class="btn btn-outline-secondary" (click)="navigateTo(ficha.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
