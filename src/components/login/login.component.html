@@ -1,0 +1,31 @@
+<div class="container-fluid vw-100 vh-100 d-flex justify-content-center align-items-center" style="background-image: linear-gradient(to right top, #316cc1, #2776c9, #1b81d0, #0d8bd6, #0095dc);">
+    <section class="bg-light rounded-lg border-section" style="padding: 2rem;">
+        <div class="container text-center">
+            <div class="row align-items-center">
+                <div class="col">
+                <div class="container bienveido-class">
+                    <h1 style="font-weight: bold; color: #316cc1;">Bienvenido a MediSys</h1>
+                </div>
+                <div class="container pl-3">
+                    <div class="container mt-4 mb-3">
+                        <h3 style="text-align: left; font-weight: bold; color: #282828;">Inicia Sesión</h3>
+                    </div>
+                    <form action="">
+                        <div class="form-floating mb-4">
+                            <input type="email" class="form-control custom-input" id="floatingInput" [(ngModel)]="usuario" name="username" placeholder="name@example.com">
+                            <label for="floatingInput" class="custom-input-label">Username</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control custom-input" id="floatingPassword" [(ngModel)]="password" name="password" placeholder="Password">
+                            <label for="floatingPassword" class="custom-input-label">Contraseña</label>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" (click)="iniciarSesion()"><h4 style="font-weight: bold; margin: 0px;">Ingresar</h4></button>
+                    <br>
+
+                </div>
+                </div>
+            </div>
+            </div>
+    </section>
+</div>

@@ -1,0 +1,121 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h2>Gestión de Médicos</h2>
+        </div>
+        <div class="col" style="text-align: end;">
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#crearMedicoModal">
+                Crear Médico
+            </button>
+            <button class="btn btn-outline-secondary"   (click)="navigateToBack()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <hr style="margin-top:3px ;">
+
+    
+
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medico of medicos">
+                <td>{{ medico.id }}</td>
+                <td>{{ medico.nombre }} {{ medico.apellido }}</td>
+                <td>{{ medico.especialidad }}</td>
+                <td>{{ medico.usuario }}</td>
+                <td>{{ medico.email }}</td>
+                <td>{{ medico.telefono }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal para ceacion de medicos -->
+    <div class="modal fade" id="crearMedicoModal" tabindex="-1" aria-labelledby="crearMedicoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearMedicoModalLabel">Crear Médico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoMedico.nombre"
+                                        name="nombre" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" [(ngModel)]="nuevoMedico.apellido"
+                                        name="apellido" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cedula" class="form-label">Cédula</label>
+                                    <input type="text" class="form-control" id="cedula" [(ngModel)]="nuevoMedico.cedula"
+                                        name="cedula" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" [(ngModel)]="nuevoMedico.email"
+                                        name="email" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefono" [(ngModel)]="nuevoMedico.telefono"
+                                        name="telefono" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control" id="fechaNacimiento"
+                                        [(ngModel)]="nuevoMedico.fechaNacimiento" name="fechaNacimiento" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="especialidad" class="form-label">Especialidad</label>
+                                    <input type="text" class="form-control" id="especialidad"
+                                        [(ngModel)]="nuevoMedico.especialidad" name="especialidad" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="usuario" class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" id="usuario" [(ngModel)]="nuevoMedico.usuario"
+                                        name="usuario" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" [(ngModel)]="nuevoMedico.password"
+                                        name="password" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="crearMedico()" data-bs-dismiss="modal">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">Crear Nueva Ficha Médica</h2>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nueva Ficha Médica</h5>
+            <form>
+                <!-- DATOS DEL PCIENTE -->
+                <div class="mb-3">
+                    <label for="pacienteId" class="form-label">Paciente</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" readonly
+                            [value]="pacienteSeleccionado ? pacienteSeleccionado.nombre + ' ' + pacienteSeleccionado.apellido : ''" />
+                        <button type="button" class="btn btn-outline-primary" (click)="abrirModal()">Seleccionar
+                            Paciente</button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="medicoId" class="form-label">Médico</label>
+                    <select id="medicoId" class="form-select" [(ngModel)]="ficha.medicoId" name="medicoId" required>
+                        <option [value]="null" disabled selected>Seleccione un médico</option>
+                        <option *ngFor="let medico of medicos" [value]="medico.id">
+                            {{ medico.nombre }} {{ medico.apellido }}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="motivoConsulta" class="form-label">Motivo de Consulta</label>
+                    <input type="text" id="motivoConsulta" class="form-control" [(ngModel)]="ficha.motivoConsulta"
+                        name="motivoConsulta" required />
+                </div>
+                <div class="mb-3">
+                    <label for="diagnostico" class="form-label">Diagnóstico</label>
+                    <input type="text" id="diagnostico" class="form-control" [(ngModel)]="ficha.diagnostico"
+                        name="diagnostico" />
+                </div>
+                <div class="mb-3">
+                    <label for="tratamiento" class="form-label">Tratamiento</label>
+                    <input type="text" id="tratamiento" class="form-control" [(ngModel)]="ficha.tratamiento"
+                        name="tratamiento" />
+                </div>
+                <div class="mb-3">
+                    <label for="detallesConsulta" class="form-label">Detalles de Consulta</label>
+                    <textarea id="detallesConsulta" class="form-control" [(ngModel)]="ficha.detallesConsulta"
+                        name="detallesConsulta"></textarea>
+                </div>
+                <button type="button" class="btn btn-success" (click)="crearFicha()">Crear Ficha</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" [class.show]="mostrarPopup"
+        style="display: block; background-color: rgba(0, 0, 0, 0.5);" *ngIf="mostrarPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccionar Paciente a atender</h5>
+                    <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control mb-3" placeholder="Buscar por nombre o apellido"
+                        [(ngModel)]="filtro" />
+                    <ul class="list-group">
+                        <li *ngFor="let paciente of pacientesFiltrados()" class="list-group-item list-group-item-action"
+                            (click)="seleccionarPaciente(paciente)">
+                            {{ paciente.nombre }} {{ paciente.apellido }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
